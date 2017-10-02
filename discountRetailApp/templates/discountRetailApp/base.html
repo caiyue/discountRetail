@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}默认标题 {% endblock %}</title>
+</head>
+<body>
+
+{% include 'discountRetailApp/nav.html' %}
+
+<div style="width: 100%;height: 300px;background: blue">
+    {% block content %}
+        <div>这里是base 的默认内容</div>
+    {% endblock %}
+</div>
+
+{#字符串在哪里都可以，引擎根据名字来赋值的#}
+{{ tstring }}
+
+{% include 'discountRetailApp/bottom.html' %}
+{% include 'discountRetailApp/tongji.html' %}
+
+</body>
+</html>
