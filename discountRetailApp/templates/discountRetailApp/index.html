@@ -2,11 +2,26 @@
 
 {% block title %} 这是index.html 的标题 {% endblock %}
 
-{% block content %}这是index.html 的内容{% endblock %}
+{% block content %}
+    这是index.html 的内容
+    <br>
+    <div style="background: orange;margin-left: 10px;margin-right: 10px;margin-bottom: 10px; padding-left: 50px">
+{#    必须要在content 中#}
+    <ul>
+    {% for item in clist reversed %}
+        {% if item >= '4'  %}
+            <li> {{ item }} 是2的倍数</li>
+        {% else %}
+            <li>{{ item }} 不是2的倍数</li>
+        {% endif %}
+    {% endfor %}
+    </ul>
 
-{{ tstring }}
+{#        可以多次赋值，应该就是字符串替换#}
+        <p >{{ tstring }}</p>
+        <p>{{ tstring }}</p>
 
-{% for item in clist %}
-{{ item }}
-{% endfor %}
+    <a>{{ request.path }}{{ request.GET.urlencode}}</a>
 
+    </div>
+{% endblock %}

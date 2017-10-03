@@ -9,16 +9,18 @@ def base(request):
 
 def index(request):
     # return HttpResponse('this is a test page')
-    contentList = ['item1','item2','item3','item4','item5']
-    return  render(request, 'discountRetailApp/index.html',{'tstring':'测试字符串'})
-    # print  contentList
-    # return  render(request, 'discountRetailApp/index.html',{'clist':contentList})
+    contentList = ['1','2','3','4','5','6','7']
+
+    # return render(request, 'discountRetailApp/index.html', {'tstring': '测试字符串'})
+    # return  render(request, 'discountRetailApp/index.html',{'contentList':contentList})
+    return  render(request, 'discountRetailApp/index.html',{'clist':contentList,'tstring':'这是一个字符串','request':request})
 
 def cal(request):
     return render(request, 'discountRetailApp/add.html')
 
 def people(request):
-    return render(request, 'discountRetailApp/people.html')
+    people = {'name': 'caiyue', 'age': '20'}
+    return render(request, 'discountRetailApp/people.html',{'people':people})
 
 def add(request):
     a = int(request.GET['a'])
