@@ -10,6 +10,12 @@ class PersonAdmin(admin.ModelAdmin):
     list_display = ('name','age','address')
 admin.site.register(Person,PersonAdmin)
 
+# ================================================================================
+# ================================================================================
+# ================================================================================
+# ================================================================================
+# ================================================================================
+
 
 class BlogAdmin(admin.ModelAdmin):
      # 可以显示的字段
@@ -35,7 +41,6 @@ class BlogAdmin(admin.ModelAdmin):
     # 重写delete 方法
     def delete_model(self, request, obj):
         obj.delete()
-
 
     def get_queryset(self, request):
         qs = super(BlogAdmin,self).get_queryset(request)
