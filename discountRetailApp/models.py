@@ -2,46 +2,79 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from utils import constant
 
 # Create your models here.
-class   Person(models.Model):
-    name = models.CharField(max_length=30)
+class   ConsumerInfo(models.Model):
+    consumerid = models.IntegerField(auto_created=True)
+    name = models.CharField(max_length=constant.nameMaxLength)
     age = models.IntegerField()
-    address = models.CharField(max_length=100,default='暂无信息')
+    address = models.CharField(max_length=constant.addressMaxLength,default='')
+    tel = models.CharField(max_length=constant.telMaxLength,default='')
+    logo = models.CharField(max_length=constant.urlMaxLength,default='')
+    consumer_intro = models.CharField(max_length=constant.introMaxLength)
+
+    register_date = models.DateTimeField()
 
     def __unicode__(self):
         return self.name
 
-class   Blog(models.Model):
-    auth = models.CharField(u'作者',max_length=30,default='no author')
-    email = models.EmailField(u'邮箱')
-    title = models.CharField(u'标题',max_length=256,default='empty title')
-    update_time = models.CharField(u'更新时间',max_length=256,default=u'暂无更新')
-    content = models.TextField(u'内容',max_length=1000,default='empty content')
+class sellerInfo(models.Model):
+    sellerid = models.IntegerField(auto_created=True)
+    sellname = models.CharField(max_length=constant.nameMaxLength)
+    sellerOwnerName = models.CharField(max_length=constant.nameMaxLength)
+    address = models.CharField(max_length=constant.addressMaxLength)
+    tel = models.CharField(max_length=constant.telMaxLength,default='')
+    seller_logo = models.CharField(max_length=constant.urlMaxLength,default='')
+    seller_intro = models.CharField(max_length=constant.contentMaxLength)
 
-    def __unicode__(self):
-        return self.title
+    lat = models.CharField(max_length=constant.floatMaxlength)
+    log = models.CharField(max_length=constant.floatMaxlength)
 
-class   Entry(models.Model):
-    blog = models.ForeignKey(Blog)
-    headline = models.CharField(max_length=30)
-    body_text = models.TextField()
-    pub_date = models.DateField()
-    mod_date = models.DateField()
-    n_comments = models.IntegerField()
-    n_pingbacks = models.IntegerField()
-    rating = models.IntegerField()
-
-    def __unicode__(self):
-        return self.headline
-
-
-class   Student(models.Model):
-    name = models.CharField(max_length=30)
-    age = models.CharField(max_length=30)
-    address = models.CharField(max_length=50)
-    email = models.EmailField()
-    mobile = models.CharField(max_length=11)
+    commit_apply_time = models.DateTimeField()
+    start_bussiness_time = models.DateTimeField()
+    close_bussiness_time = models.DateTimeField()
+    isInBussiness = models.BooleanField(default=True)
 
     def __unicode__(self):
         return self.name
+
+class categoryInfo(models.Model):
+    categoryId = models.IntegerField(auto_created=True)
+    categoryName = models.CharField(max_length=constant.nameMaxLength)
+    categoryIntro = models.CharField(max_length=constant.contentMaxLength)
+
+
+class waresInfo(models.Model):
+    wareId = models.IntegerField(auto_created=True)
+    # ,分割多个图片
+    ware_img = models.CharField(max_length=constant.urlMaxLength)
+   #，分割多个视频
+    ware_video_url = models.CharField(max_length=constant.urlMaxLength)
+    wareIntro = models.CharField(max_length=constant.contentMaxLength)
+    warePrice = models.CharField(max_length= constant.priceMaxlength)
+
+    sellerId = models.IntegerField()
+
+    on_sail_time = models.DateTimeField()
+    init_sail_count = models.IntegerField(default=0)
+    current_available_count = models.IntegerField(default=0)
+    wareCategoryId = models.IntegerField()
+
+
+class OrderInfo(models.Model):
+    order_create_time = models.DateTimeField()
+
+    #支付时间
+    orer_complete_time = models.DateTimeField()
+
+    #支付关闭时间,商家关闭或者成交后30天后
+    order_close_time = models.DateTimeField()
+
+    consumerid = models.IntegerField()
+    sellerid = models.IntegerField()
+
+    wareid = models.IntegerField()
+    order_price = models.CharField(max_length=constant.priceMaxlength)
+
+    order_comment = models.CharField(max_length=constant.contentMaxLength)
