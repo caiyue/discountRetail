@@ -5,7 +5,7 @@ from django.db import models
 from utils import constant
 
 # Create your models here.
-class   ConsumerInfo(models.Model):
+class   consumerInfo(models.Model):
     consumerid = models.IntegerField(auto_created=True)
     name = models.CharField(max_length=constant.nameMaxLength)
     age = models.IntegerField()
@@ -62,7 +62,7 @@ class waresInfo(models.Model):
     wareCategoryId = models.IntegerField()
 
 
-class OrderInfo(models.Model):
+class orderInfo(models.Model):
     order_create_time = models.DateTimeField()
 
     #支付时间
