@@ -3,6 +3,9 @@
 from django.shortcuts import render
 from models import  sellerInfo,waresInfo,categoryInfo,orderInfo,consumerInfo
 from django.http  import HttpResponse
+from django.template import RequestContext
+from django.views.decorators.csrf import csrf_exempt
+
 # Create your views here.
 
 # def base(request):
@@ -48,6 +51,15 @@ from django.http  import HttpResponse
 def index(request):
     return HttpResponse('this is the index page')
 
+@csrf_exempt
+def uploadImg(request):
+    method = request.method
+    imgData = request.POST.get('img',None)
+    if imgData:
+        return HttpResponse('upload image success')
+    else:
+        return HttpResponse('upload imgage failed')
+
 #adduser
 def adduser(request):
     if request.method == 'GET':
@@ -59,7 +71,6 @@ def adduser(request):
         address = request.POST['address']
         userlogo = request.POST['logo']
         intro = request.POST['intro']
-
         return HttpResponse(username + age + tel + address + userlogo + intro)
 
 

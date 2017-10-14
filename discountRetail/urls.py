@@ -26,6 +26,7 @@ urlpatterns = [
     # url(r'^people', discountRetail_views.people, name='people'),
     # url(r'^base', discountRetail_views.base, name='base'),
     url(r'^$',discountRetail_views.index),
-    url(r'^adduser$',discountRetail_views.adduser,name='adduser')
+    url(r'^adduser$',discountRetail_views.adduser,name='adduser'),
+    url(r'^uploadImg$',discountRetail_views.uploadImg,name='uploadImg'),
 
 ]

@@ -3,11 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <title>添加用户</title>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        function uploadLogo(e,btn) {
+            $.post('uploadImg',{
+                'img':'aaaa',
+                'userid':'1223'
+            },function (data) {
+                console.log('response Data = ' + data)
+            })
+            {
+                console.log('this is in call back')
+            }
+        }
+        
+        function uploadFile(obj,type) {
+
+            //获取文件
+        var file = $("#fileUpload").find("input")[0].files[0];
+
+        //创建读取文件的对象
+        var reader = new FileReader();
+
+        //创建文件读取相关的变量
+        var imgFile;
+
+        //为文件读取成功设置事件
+        reader.onload=function(e) {
+                alert('文件读取完成');
+                imgFile = e.target.result;
+                console.log(imgFile);
+                $("#imgContent").attr('src', imgFile);
+            };
+
+            //正式读取文件
+            reader.readAsDataURL(file);
+
+        }
+
+    </script>
 </head>
 <body>
 
-<form method="post" target="_self" name="adduser">
-
+<form method="post" target="_self" name="adduser" action="adduser">
+    {% csrf_token %}
     <div style="width: 100%;height:500px;background: indianred">
         <p style="display: inline;">名称:</p> <input  type="text"  name="name"></input>
         <br>
@@ -17,7 +56,7 @@
         <br>
         <p style="display:inline;">电话:</p> <input type="text" name="tel"></input>
         <br>
-        <p style="display:inline;">头像:</p> <input type="file" name="logo"></input><button type="button">点击上传</button>
+        <p style="display:inline;">头像:</p> <input type="file" name="logo" id="fileUpload" onchange ="uploadLogo(this)"></input>
         <br>
         <p style="display:inline;">介绍:</p> <input type="text"name="intro"></input>
         <br>

@@ -14,7 +14,7 @@ class   consumerInfo(models.Model):
     logo = models.CharField(max_length=constant.urlMaxLength,default='')
     consumer_intro = models.CharField(max_length=constant.introMaxLength)
 
-    register_date = models.DateTimeField()
+    register_date = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
         return self.name
@@ -32,7 +32,7 @@ class sellerInfo(models.Model):
     log = models.CharField(max_length=constant.floatMaxlength)
 
     commit_apply_time = models.DateTimeField()
-    start_bussiness_time = models.DateTimeField()
+    start_bussiness_time = models.DateTimeField(auto_now_add=True)
     close_bussiness_time = models.DateTimeField()
     isInBussiness = models.BooleanField(default=True)
 
@@ -56,14 +56,14 @@ class waresInfo(models.Model):
 
     sellerId = models.IntegerField()
 
-    on_sail_time = models.DateTimeField()
+    on_sail_time = models.DateTimeField(auto_now_add=True)
     init_sail_count = models.IntegerField(default=0)
     current_available_count = models.IntegerField(default=0)
     wareCategoryId = models.IntegerField()
 
 
 class orderInfo(models.Model):
-    order_create_time = models.DateTimeField()
+    order_create_time = models.DateTimeField(auto_now_add=True)
 
     #支付时间
     orer_complete_time = models.DateTimeField()
