@@ -6,12 +6,12 @@ from utils import constant
 
 # Create your models here.
 class   consumerInfo(models.Model):
-    consumerid = models.IntegerField(auto_created=True)
+    consumerid = models.AutoField
     name = models.CharField(max_length=constant.nameMaxLength)
     age = models.IntegerField()
     address = models.CharField(max_length=constant.addressMaxLength,default='')
     tel = models.CharField(max_length=constant.telMaxLength,default='')
-    logo = models.CharField(max_length=constant.urlMaxLength,default='')
+    logo_url = models.CharField(max_length=constant.urlMaxLength,default='')
     consumer_intro = models.CharField(max_length=constant.introMaxLength)
 
     register_date = models.DateTimeField(auto_now_add=True)
@@ -20,7 +20,7 @@ class   consumerInfo(models.Model):
         return self.name
 
 class sellerInfo(models.Model):
-    sellerid = models.IntegerField(auto_created=True)
+    sellerid = models.AutoField
     sellname = models.CharField(max_length=constant.nameMaxLength)
     sellerOwnerName = models.CharField(max_length=constant.nameMaxLength)
     address = models.CharField(max_length=constant.addressMaxLength)
@@ -40,13 +40,13 @@ class sellerInfo(models.Model):
         return self.name
 
 class categoryInfo(models.Model):
-    categoryId = models.IntegerField(auto_created=True)
+    categoryId = models.AutoField
     categoryName = models.CharField(max_length=constant.nameMaxLength)
     categoryIntro = models.CharField(max_length=constant.contentMaxLength)
 
 
 class waresInfo(models.Model):
-    wareId = models.IntegerField(auto_created=True)
+    wareId = models.AutoField
     # ,分割多个图片
     ware_img = models.CharField(max_length=constant.urlMaxLength)
    #，分割多个视频

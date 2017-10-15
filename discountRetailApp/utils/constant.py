@@ -6,3 +6,5 @@ introMaxLength = 20
 telMaxLength = 14
 priceMaxlength = 20
 floatMaxlength = 20
+
+img_prefix = 'upload/img/'

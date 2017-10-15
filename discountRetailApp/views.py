@@ -5,7 +5,10 @@ from models import  sellerInfo,waresInfo,categoryInfo,orderInfo,consumerInfo
 from django.http  import HttpResponse
 from django.template import RequestContext
 from django.views.decorators.csrf import csrf_exempt
-
+from datetime import datetime
+from utils import constant
+from discountRetail.settings import BASE_DIR
+from PIL import Image
 # Create your views here.
 
 # def base(request):
@@ -56,7 +59,7 @@ def uploadImg(request):
     method = request.method
     imgData = request.POST.get('img',None)
     if imgData:
-        return HttpResponse('upload image success')
+        return HttpResponse('upload image success' + imgData)
     else:
         return HttpResponse('upload imgage failed')
 
@@ -65,14 +68,25 @@ def adduser(request):
     if request.method == 'GET':
         return render(request,'discountRetailApp/user/adduserPage.html')
     else:
-        username = request.POST['name']
-        age = request.POST['age']
-        tel = request.POST['tel']
-        address = request.POST['address']
-        userlogo = request.POST['logo']
-        intro = request.POST['intro']
-        return HttpResponse(username + age + tel + address + userlogo + intro)
+        username = request.POST.get('name',None)
+        uage = request.POST.get('age',None)
+        utel = request.POST.get('tel',None)
+        uaddress = request.POST.get('address',None)
+        uintro = request.POST.get('intro',None)
 
+        logo = request.FILES.get('logo',None)
+        logoname = logo.name
+
+        logourl = None
+        if logo:
+            img = Image.open(logo)
+            logourl = constant.img_prefix + logoname
+            img.save(BASE_DIR + logourl)
+
+        consumer = consumerInfo.objects.create(name=username,age=uage,address = uaddress,tel=utel,logo_url = logourl,consumer_intro=uintro, register_date=datetime.now())
+        consumer.save()
+
+        return HttpResponse('adduser success')
 
 
 
