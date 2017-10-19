@@ -7,4 +7,4 @@ telMaxLength = 14
 priceMaxlength = 20
 floatMaxlength = 20
 
-img_prefix = 'upload/img/'
+img_prefix = 'discountRetailApp/upload/img/'

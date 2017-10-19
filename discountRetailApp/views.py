@@ -9,6 +9,7 @@ from datetime import datetime
 from utils import constant
 from discountRetail.settings import BASE_DIR
 from PIL import Image
+from os import path as fpath
 # Create your views here.
 
 # def base(request):
@@ -76,16 +77,15 @@ def adduser(request):
 
         logo = request.FILES.get('logo',None)
         logoname = logo.name
-
         logourl = None
+
         if logo:
             img = Image.open(logo)
-            logourl = constant.img_prefix + logoname
-            img.save(BASE_DIR + logourl)
+            logourl = fpath.join(constant.img_prefix,logoname)
+            img.save(fpath.join(BASE_DIR,logourl))
 
         consumer = consumerInfo.objects.create(name=username,age=uage,address = uaddress,tel=utel,logo_url = logourl,consumer_intro=uintro, register_date=datetime.now())
         consumer.save()
-
         return HttpResponse('adduser success')
 
 
