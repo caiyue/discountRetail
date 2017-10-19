@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}默认标题{% endblock %}</title>
+
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script>
+        function uploadLogo(e,btn) {
+            $.post('uploadImg',{
+                'img':'aaaa',
+                'userid':'1223'
+            },function (data) {
+                console.log('response Data = ' + data)
+            })
+            {
+                console.log('this is in call back')
+            }
+        }
+
+    </script>
+</head>
+
+<body>
+{% block content %} body 是空的 {% endblock %}
+</body>
+</html>

@@ -1,26 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>添加用户</title>
-    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script>
-        function uploadLogo(e,btn) {
-            $.post('uploadImg',{
-                'img':'aaaa',
-                'userid':'1223'
-            },function (data) {
-                console.log('response Data = ' + data)
-            })
-            {
-                console.log('this is in call back')
-            }
-        }
+{% extends 'discountRetailApp/user/userOperation.html' %}
 
-    </script>
-</head>
-<body>
+{% block title %} {{ btntitle }} {% endblock %}
 
+{% block content %}
 <form method="post" enctype="multipart/form-data" target="_self" name="adduser" action="adduser">
     {% csrf_token %}
     <div style="width: 100%;height:500px;background: indianred">
@@ -38,9 +20,7 @@
         <br>
     </div>
 
-    <button type="submit">点击添加</button>
-
+    <button type="submit">{{  btntitle  }}</button>
 </form>
 
-</body>
-</html>
+{% endblock %}

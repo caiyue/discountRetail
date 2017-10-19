@@ -67,7 +67,7 @@ def uploadImg(request):
 #adduser
 def adduser(request):
     if request.method == 'GET':
-        return render(request,'discountRetailApp/user/adduserPage.html')
+        return render(request,'discountRetailApp/user/adduser.html',{'btntitle':'添加用户'})
     else:
         username = request.POST.get('name',None)
         uage = request.POST.get('age',None)
@@ -88,6 +88,16 @@ def adduser(request):
         consumer.save()
         return HttpResponse('adduser success')
 
+def checkuser(request):
+    if request.method == 'GET':
+        return render(request,'discountRetailApp/user/checkuser.html',{'btntitle':'查询用户'})
+    else:
+        username = request.POST.get('name', None)
+        uage = request.POST.get('age', None)
+        utel = request.POST.get('tel', None)
+        uaddress = request.POST.get('address', None)
+        uintro = request.POST.get('intro', None)
 
+        ret = consumerInfo.objects.get(tel__contains= '13146623011' )
 
-
+        return HttpResponse(ret)

@@ -1,0 +1,26 @@
+{% extends 'discountRetailApp/user/userOperation.html' %}
+
+{% block title %} {{ btntitle }} {% endblock %}
+
+{% block content %}
+<form method="post" enctype="multipart/form-data" target="_self" name="checkuser" action="checkuser">
+    {% csrf_token %}
+    <div style="width: 100%;height:500px;background: indianred">
+        <p style="display: inline;">名称:</p> <input  type="text"  name="name"></input>
+        <br>
+        <p style="display:inline;">年龄:</p> <input type="text" name="age"></input>
+        <br>
+        <p style="display:inline;">地址:</p> <input type="text" name="address"></input>
+        <br>
+        <p style="display:inline;">电话:</p> <input type="text" name="tel"></input>
+        <br>
+        <p style="display:inline;">头像:</p> <input type="file" name="logo" id="fileUpload" onchange ="uploadLogo(this)"></input>
+        <br>
+        <p style="display:inline;">介绍:</p> <input type="text"name="intro"></input>
+        <br>
+    </div>
+
+    <button type="submit">{{ btntitle  }}</button>
+</form>
+
+{% endblock %}
