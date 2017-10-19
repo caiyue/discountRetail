@@ -10,6 +10,7 @@ from utils import constant
 from discountRetail.settings import BASE_DIR
 from PIL import Image
 from os import path as fpath
+import imghdr
 # Create your views here.
 
 # def base(request):
@@ -97,7 +98,21 @@ def checkuser(request):
         utel = request.POST.get('tel', None)
         uaddress = request.POST.get('address', None)
         uintro = request.POST.get('intro', None)
-
-        ret = consumerInfo.objects.get(tel__contains= '13146623011' )
+        if utel:
+            ret = consumerInfo.objects.get(tel__contains= utel )
+        else:
+            ret = 'no result'
 
         return HttpResponse(ret)
+
+def imgRequest(request,a):
+    url = request.path
+    if url:
+        imgUrl = BASE_DIR + url
+        if fpath.exists(imgUrl):
+            image_data = open(imgUrl, "rb").read()
+            type = imghdr.what(imgUrl)
+            return HttpResponse(image_data, content_type=("image/%s") % type)
+        
+    return HttpResponse('')
+

@@ -26,6 +26,7 @@ urlpatterns = [
     # url(r'^people', discountRetail_views.people, name='people'),
     # url(r'^base', discountRetail_views.base, name='base'),
     url(r'^$',discountRetail_views.index),
+    url(r'^discountRetailApp/upload/img/(\s*)',discountRetail_views.imgRequest,name='imgRequest'),
     url(r'^adduser$',discountRetail_views.adduser,name='adduser'),
     url(r'^checkuser$',discountRetail_views.checkuser,name='checkuser'),
     url(r'^uploadImg$',discountRetail_views.uploadImg,name='uploadImg'),
