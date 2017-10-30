@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <script type="text/javascript">
+       function openAppConnect13(btn,ev){
+           ev = window.event || ev
+           originY = ev.offsetY
+           orginX = ev.offsetX
+           url1 = 'openApp.jdMobile://virtual?params={"category":"jump","des":"story","subDes":"activity","activityID":"569","sourceType":"","sourceValue":""}';
+           url2 = 'openApp.jdMobile://virtual?params={"category":"jump","des":"story","subDes":"activity","activityID":"569","sourceType":"","sourceValue":""}';
+           if (btn.id == 'a1'){
+               if (orginX <= btn.offsetWidth/2){
+                   console.log('a1 left')
+                   window.location.href = url1
+               }else{
+                   console.log('a1 right')
+                   window.location.href = url2
+               }
+           }else if(btn.id == 'a2') {
+               if (orginX <= btn.offsetWidth/2){
+                   console.log('a2 left')
+                   window.location.href = url1
+               }else{
+                   console.log('a2 right')
+                   window.location.href = url2
+               }
+           }else{
+               console.log('default')
+           }
+    }
+    </script>
+</head>
+<body>
+<a  href="#" > <img  onclick="openAppConnect13(this,event)" id='a1' src="111.jpeg" width="1125" height="" alt="" /></a>
+<a  href="#" > <img  onclick="openAppConnect13(this,event)" id='a2' src="222.jpeg" width="1125" height="" alt="" /></a>
+
+</body>
+</html>
